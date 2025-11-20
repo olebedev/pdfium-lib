@@ -4,7 +4,7 @@ from pygemstones.io import file as f
 from pygemstones.util import log as l
 
 
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 def apply_shared_library(target):
     source_dir = os.path.join("build", target, "pdfium")
     source_file = os.path.join(source_dir, "BUILD.gn")
