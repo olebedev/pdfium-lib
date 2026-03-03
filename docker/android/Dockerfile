@@ -27,7 +27,7 @@ RUN apt-get install -y build-essential sudo file git wget curl cmake ninja-build
     apt-get clean
 
 # define timezone
-RUN echo "America/Sao_Paulo" > /etc/timezone
+RUN echo "Australia/Sydney" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
 RUN /bin/echo -e "LANG=\"en_US.UTF-8\"" > /etc/default/local
 
