@@ -27,7 +27,7 @@ RUN apt-get install -y build-essential sudo file git wget curl cmake ninja-build
     apt-get clean
 
 # define timezone
-RUN echo "America/Sao_Paulo" > /etc/timezone
+RUN echo "Australia/Sydney" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
 RUN /bin/echo -e "LANG=\"en_US.UTF-8\"" > /etc/default/local
 
@@ -54,7 +54,7 @@ RUN mkdir /build
 WORKDIR /build
 RUN gclient config --custom-var checkout_configuration=minimal --unmanaged https://pdfium.googlesource.com/pdfium.git
 RUN echo "target_os = [ 'android' ]" >> .gclient
-RUN gclient sync -r origin/chromium/7442 --no-history --shallow
+RUN gclient sync -r origin/chromium/7539 --no-history --shallow
 
 # pdfium reset and clean directories
 RUN git -C /build/pdfium reset --hard

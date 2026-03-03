@@ -4,7 +4,7 @@ from pygemstones.io import file as f
 from pygemstones.util import log as l
 
 
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 def apply_shared_library(target):
     source_dir = os.path.join("build", target, "pdfium")
     source_file = os.path.join(source_dir, "BUILD.gn")
@@ -13,11 +13,21 @@ def apply_shared_library(target):
     has_content = f.file_has_content(source_file, original_content)
 
     if has_content:
-        new_content = 'shared_library("pdfium") {'
+        new_content = 'static_library("pdfium") {'
         f.replace_in_file(source_file, original_content, new_content)
-        l.bullet("Applied: shared library", l.GREEN)
+        l.bullet("Applied: static library", l.GREEN)
     else:
-        l.bullet("Skipped: shared library", l.PURPLE)
+        l.bullet("Skipped: static library", l.PURPLE)
+
+    original_content = 'static_component_type = "static_library"'
+    has_content = f.file_has_content(source_file, original_content)
+
+    if has_content:
+        new_content = '# static_component_type = "static_library"'
+        f.replace_in_file(source_file, original_content, new_content)
+        l.bullet("Applied: static_component_type", l.GREEN)
+    else:
+        l.bullet("Skipped: static_component_type", l.PURPLE)
 
 
 # -----------------------------------------------------------------------------
